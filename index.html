@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gadget's Empire — Used iPhones & Apple Chargers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="pageTransition"><div class="pt-brand"><span class="pt-dot"></span>Gadget's Empire</div></div>
+<div id="cursor-glow"></div>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="name">Gadget's Empire</span><span class="dot"></span></div>
+    <nav class="links">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button id="cartToggle" class="cart-toggle magnetic" aria-haspopup="true" aria-expanded="false" aria-controls="cartDrawer" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F5F5F0" stroke-width="1.8"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/><circle cx="9.5" cy="20.5" r="1.4" fill="#F5F5F0" stroke="none"/><circle cx="17.5" cy="20.5" r="1.4" fill="#F5F5F0" stroke="none"/></svg>
+        <span id="cartCount" class="cart-count">0</span>
+      </button>
+      <a class="btn btn-solid magnetic" href="shop.html">Shop Now</a>
+    </div>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Used iPhones &amp; Apple Chargers</span>
+      <h1>Your next iPhone<br><span>is one cart away.</span></h1>
+      <p>Verified used iPhones and genuine Apple gear — build your order right on the page, then checkout over WhatsApp and pay with bKash.</p>
+      <div class="hero-actions">
+        <a href="shop.html" class="btn btn-solid magnetic">Explore the Shelf</a>
+        <a href="contact.html" class="btn btn-outline magnetic">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-3d reveal" aria-hidden="true">
+      <div class="hero-3d-inner">
+        <div class="hero-3d-face front"><div class="screen"></div></div>
+        <div class="hero-3d-face back"><div class="screen"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span><b>Used iPhones</b> &middot; Apple Chargers &middot; MagSafe &middot; Audio &middot; Wearables &middot; Accessories &middot; <b>Used iPhones</b> &middot; Apple Chargers &middot; MagSafe &middot; Audio &middot; Wearables &middot; Accessories</span>
+      <span aria-hidden="true"><b>Used iPhones</b> &middot; Apple Chargers &middot; MagSafe &middot; Audio &middot; Wearables &middot; Accessories &middot; <b>Used iPhones</b> &middot; Apple Chargers &middot; MagSafe &middot; Audio &middot; Wearables &middot; Accessories</span>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="num" data-count="17">0</div><div class="lbl">Products on the shelf</div></div>
+      <div class="stat reveal"><div class="num" data-count="2">0</div><div class="lbl">Days avg. Dhaka delivery</div></div>
+      <div class="stat reveal"><div class="num" data-count="5">0</div><div class="lbl">Categories covered</div></div>
+      <div class="stat reveal"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">bKash secured payment</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Browse by</span><h2>Category</h2></div>
+      <p>Tap a category to browse it on the shop page.</p>
+    </div>
+    <div class="cat-grid">
+      <a href="shop.html?cat=phones" class="cat-card reveal">
+        <div class="glow"></div>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="12" y="4" width="16" height="32" rx="3"/><line x1="12" y1="10" x2="28" y2="10"/><line x1="12" y1="30" x2="28" y2="30"/></svg>
+        <h3>Mobile Phones</h3><p>Used iPhones, verified condition</p>
+      </a>
+      <a href="shop.html?cat=power" class="cat-card reveal">
+        <div class="glow"></div>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="6" y="13" width="24" height="14" rx="3"/><path d="M20 16 L15 22 L19 22 L16 27 L25 19 L20 19 Z" fill="var(--accent)" stroke="none"/></svg>
+        <h3>Apple Chargers</h3><p>Genuine adapters &amp; cables</p>
+      </a>
+      <a href="shop.html?cat=audio" class="cat-card reveal">
+        <div class="glow"></div>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="11" y="7" width="6" height="11" rx="3"/><rect x="23" y="7" width="6" height="11" rx="3"/><circle cx="10" cy="27" r="2" fill="var(--accent)" stroke="none"/><circle cx="28" cy="27" r="2" fill="var(--accent)" stroke="none"/></svg>
+        <h3>Audio</h3><p>Earbuds &amp; speakers</p>
+      </a>
+      <a href="shop.html?cat=wearables" class="cat-card reveal">
+        <div class="glow"></div>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="13" y="11" width="14" height="18" rx="4"/><rect x="17" y="4" width="6" height="7" rx="1.5"/><rect x="17" y="29" width="6" height="7" rx="1.5"/></svg>
+        <h3>Wearables</h3><p>Smart watches</p>
+      </a>
+      <a href="shop.html?cat=accessories" class="cat-card reveal">
+        <div class="glow"></div>
+        <svg class="icon" viewBox="0 0 40 40" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="11" y="4" width="18" height="32" rx="5"/><circle cx="25" cy="10" r="1.6" fill="var(--accent)" stroke="none"/></svg>
+        <h3>Accessories</h3><p>Cases, guards &amp; power banks</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">The Shelf</span><h2>This week's picks</h2></div>
+      <a href="shop.html" class="btn btn-outline magnetic">View All &rarr;</a>
+    </div>
+    <div class="grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Shop like a store</span><h2>How ordering works</h2></div>
+      <p>Add everything you want to the cart, then check out in one message.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="num mono">01</span><h3>Add items to your cart</h3><p>Pick a storage/variant on each product and tap Add to Cart — mix phones and accessories freely.</p></div>
+      <div class="step reveal"><span class="num mono">02</span><h3>Checkout via WhatsApp</h3><p>Your full order — items, variants, and total — is pre-written into one WhatsApp message.</p></div>
+      <div class="step reveal"><span class="num mono">03</span><h3>Confirm &amp; pay with bKash</h3><p>We confirm stock and delivery, then you pay with bKash and we ship.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Straight talk</span><h2>Payment &amp; delivery</h2></div>
+      <p>Everything you need before you send money.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal"><div class="label">Pay by</div><div class="value">bKash (Send Money)</div><div class="sub">Number confirmed in chat before you pay</div></div>
+      <div class="trust-card reveal"><div class="label">Order via</div><div class="value">Cart Checkout or WhatsApp</div><div class="sub">+880 1951-467502</div></div>
+      <div class="trust-card reveal"><div class="label">Delivery</div><div class="value">Nationwide courier</div><div class="sub">Dhaka: 1–2 days · Outside Dhaka: 3–5 days</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo"><span class="name">Gadget's Empire</span><span class="dot"></span></div>
+        <p style="color:var(--text-dim); font-size:14px; margin-top:12px; max-width:300px;">Verified used iPhones and genuine Apple chargers, ordered the simple way. Dhaka, Bangladesh.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="shop.html">All products</a></li><li><a href="index.html#order">How to order</a></li><li><a href="index.html#trust">Payment info</a></li></ul></div>
+      <div><h4>Reach us</h4><ul>
+        <li><a href="https://wa.me/8801951467502" target="_blank" rel="noopener">WhatsApp: +880 1951-467502</a></li>
+        <li><a href="mailto:asifuzzaman3761@gmail.com">asifuzzaman3761@gmail.com</a></li>
+        <li><a href="contact.html">Facebook Page</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Gadget's Empire — Used iPhones &amp; Apple Chargers</span><span>Hosted on GitHub Pages</span></div>
+  </div>
+</footer>
+
+<div id="cartOverlay" class="cart-overlay"></div>
+<aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+  <div class="cart-drawer-head"><h3>Your Cart</h3><button id="cartClose" class="cart-close" aria-label="Close cart">&times;</button></div>
+  <div id="cartItems" class="cart-items"><p class="cart-empty">Your cart is empty. Add something from the shelf.</p></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal" class="mono">৳0</span></div>
+    <a id="checkoutWhatsapp" class="btn btn-solid magnetic" style="width:100%; margin-bottom:10px;" target="_blank" rel="noopener">Checkout via WhatsApp</a>
+    <button id="checkoutFacebook" class="btn btn-outline" style="width:100%;">Copy Order for Facebook</button>
+    <p class="cart-note">Checkout opens WhatsApp with your order pre-written. Nothing is charged automatically.</p>
+  </div>
+</aside>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+<script>
+  function pageInit(){
+    document.querySelector('.hero-3d-face.front .screen').innerHTML = ART.phone;
+    document.querySelector('.hero-3d-face.back .screen').innerHTML = ART.adapter;
+    var grid = document.getElementById('featuredGrid');
+    var featured = ['iphone13pro','iphone14pro-usa','magsafe','smartwatch'];
+    featured.forEach(function(id){ grid.appendChild(buildProductCard(getProduct(id))); });
+  }
+</script>
+</body>
+</html>
