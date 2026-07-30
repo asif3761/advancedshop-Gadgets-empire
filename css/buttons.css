@@ -1,0 +1,100 @@
+/* Blade Inspired Buttons */
+
+.samurai-btn {
+
+position:relative;
+
+display:inline-block;
+
+padding:15px 35px;
+
+background:
+
+linear-gradient(
+135deg,
+#1d3928,
+#4caf70
+);
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+letter-spacing:1px;
+
+clip-path:
+
+polygon(
+8% 0,
+100% 0,
+92% 100%,
+0 100%
+);
+
+
+overflow:hidden;
+
+transition:.4s;
+
+}
+
+
+/* moving blade shine */
+
+.samurai-btn::before {
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:80%;
+
+height:100%;
+
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.6),
+transparent
+);
+
+
+transform:skewX(-25deg);
+
+
+transition:.6s;
+
+}
+
+
+
+.samurai-btn:hover::before {
+
+left:140%;
+
+}
+
+
+.samurai-btn:hover {
+
+transform:
+
+translateY(-6px);
+
+
+box-shadow:
+
+0 15px 35px
+
+rgba(76,175,112,.5);
+
+}
