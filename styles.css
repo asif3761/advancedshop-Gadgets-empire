@@ -1,15 +1,24 @@
 :root{
-  --bg: #0A0A0B;
-  --surface: #131316;
-  --surface-2: #1C1C21;
-  --text: #F5F5F0;
-  --text-dim: #9A9A9E;
-  --accent: #C6FF3D;
-  --accent-dim: #8FBF2A;
-  --blue: #4C7CF3;
-  --line: rgba(245,245,240,0.09);
-  --radius: 14px;
+
+--bg:#080907;
+--surface:#11130f;
+--surface-2:#191b15;
+
+--text:#f4f1e8;
+--text-dim:#a7a28f;
+
+--accent:#b7c96b;
+--accent-dim:#718043;
+
+--jade:#5f8f62;
+--blood:#7b2727;
+
+--line:rgba(244,241,232,0.12);
+
+--radius:18px;
+
 }
+
 *{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; background:var(--bg); }
 body{
@@ -354,3 +363,181 @@ footer ul a:hover{ color:var(--accent); }
   white-space:nowrap;
 }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+body{
+
+background:
+radial-gradient(
+circle at top,
+rgba(95,143,98,.15),
+transparent 40%
+),
+var(--bg);
+
+}
+
+
+/* Wind atmosphere */
+
+.wind-layer{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:5;
+
+background:
+linear-gradient(
+120deg,
+transparent 30%,
+rgba(183,201,107,.08),
+transparent 70%
+);
+
+animation:
+windMove 8s infinite linear;
+
+}
+
+
+
+@keyframes windMove{
+
+0%{
+transform:translateX(-30%);
+}
+
+100%{
+transform:translateX(30%);
+}
+
+}
+
+
+
+
+/* Product floating motion */
+
+.parallax{
+
+transition:
+transform .25s ease-out;
+
+}
+
+
+
+/* Samurai blade buttons */
+
+.samurai-btn{
+
+
+background:
+linear-gradient(
+120deg,
+#b7c96b,
+#718043
+);
+
+
+border-radius:4px 22px 4px 22px;
+
+
+clip-path:
+polygon(
+0 0,
+90% 0,
+100% 50%,
+90% 100%,
+0 100%,
+12% 50%
+);
+
+
+box-shadow:
+
+0 0 25px rgba(183,201,107,.35);
+
+
+}
+
+
+
+
+.samurai-btn:hover{
+
+
+transform:
+
+translateY(-5px)
+skewX(-8deg);
+
+
+box-shadow:
+
+0 0 40px rgba(183,201,107,.6);
+
+
+}
+
+
+
+/* Product showcase floating */
+
+.product-showcase{
+
+animation:
+
+floatObject 6s ease-in-out infinite;
+
+}
+
+
+
+@keyframes floatObject{
+
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+
+}
+
+
+
+
+/* Moon glow cursor */
+
+#cursor-glow{
+
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(183,201,107,.25),
+
+transparent 70%
+
+);
+
+
+}
