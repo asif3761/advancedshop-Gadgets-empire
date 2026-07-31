@@ -2,17 +2,17 @@
 var WHATSAPP_NUMBER = '8801951467502';
 
 var ART = {
-  phone: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="32" y="10" width="36" height="80" rx="9"/><line x1="32" y1="20" x2="68" y2="20"/><line x1="32" y1="80" x2="68" y2="80"/><circle cx="50" cy="82" r="2.2" fill="#F5F5F0" stroke="none" opacity="0.6"/></svg>',
-  adapter: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="18" y="34" width="64" height="32" rx="7"/><path d="M53,42 L44,53 L50,53 L46,62 L59,49 L52,49 Z" fill="var(--accent)" stroke="none"/></svg>',
-  magsafe: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><circle cx="50" cy="50" r="24" /><circle cx="50" cy="50" r="9" fill="var(--accent)" stroke="none"/></svg>',
-  adapter5w: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="30" y="38" width="40" height="24" rx="5"/><path d="M52,44 L46,53 L50,53 L48,58 L56,49 L51,49 Z" fill="var(--accent)" stroke="none"/></svg>',
-  cable: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><path d="M20,50 Q50,30 80,50" /><circle cx="20" cy="50" r="5" fill="var(--accent)" stroke="none"/><circle cx="80" cy="50" r="5" fill="var(--accent)" stroke="none"/></svg>',
-  earbuds: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="30" y="20" width="14" height="26" rx="7"/><path d="M37,46 L37,58 Q37,66 30,68"/><circle cx="27" cy="70" r="4" fill="var(--accent)" stroke="none"/><rect x="56" y="20" width="14" height="26" rx="7"/><path d="M63,46 L63,58 Q63,66 70,68"/><circle cx="73" cy="70" r="4" fill="var(--accent)" stroke="none"/></svg>',
-  speaker: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="25" y="18" width="50" height="64" rx="10"/><circle cx="50" cy="40" r="9"/><circle cx="50" cy="65" r="13"/><circle cx="50" cy="65" r="5" fill="var(--accent)" stroke="none"/></svg>',
-  smartwatch: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="34" y="30" width="32" height="40" rx="8"/><rect x="42" y="16" width="16" height="16" rx="3"/><rect x="42" y="68" width="16" height="16" rx="3"/><circle cx="50" cy="50" r="3" fill="var(--accent)" stroke="none"/></svg>',
-  powerbank: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="30" y="18" width="40" height="64" rx="8"/><path d="M55,32 L44,50 L50,50 L46,66 L62,44 L54,44 Z" fill="var(--accent)" stroke="none"/></svg>',
-  phonecase: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="28" y="10" width="44" height="80" rx="13"/><circle cx="63" cy="24" r="4"/><rect x="34" y="16" width="24" height="48" rx="4" fill="#F5F5F0" stroke="none" opacity="0.18"/></svg>',
-  screenguard: '<svg viewBox="0 0 100 100" fill="none" stroke="#F5F5F0" stroke-width="2.4"><rect x="30" y="12" width="40" height="76" rx="10"/><rect x="36" y="18" width="28" height="60" rx="3" fill="#F5F5F0" stroke="none" opacity="0.14"/><line x1="40" y1="30" x2="60" y2="30" stroke="var(--accent)" stroke-width="2" opacity="0.7"/></svg>'
+  phone: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="32" y="10" width="36" height="80" rx="9"/><line x1="32" y1="20" x2="68" y2="20"/><line x1="32" y1="80" x2="68" y2="80"/><circle cx="50" cy="82" r="2.2" fill="#F3E9DC" stroke="none" opacity="0.6"/></svg>',
+  adapter: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="18" y="34" width="64" height="32" rx="7"/><path d="M53,42 L44,53 L50,53 L46,62 L59,49 L52,49 Z" fill="var(--accent)" stroke="none"/></svg>',
+  magsafe: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><circle cx="50" cy="50" r="24" /><circle cx="50" cy="50" r="9" fill="var(--accent)" stroke="none"/></svg>',
+  adapter5w: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="30" y="38" width="40" height="24" rx="5"/><path d="M52,44 L46,53 L50,53 L48,58 L56,49 L51,49 Z" fill="var(--accent)" stroke="none"/></svg>',
+  cable: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><path d="M20,50 Q50,30 80,50" /><circle cx="20" cy="50" r="5" fill="var(--accent)" stroke="none"/><circle cx="80" cy="50" r="5" fill="var(--accent)" stroke="none"/></svg>',
+  earbuds: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="30" y="20" width="14" height="26" rx="7"/><path d="M37,46 L37,58 Q37,66 30,68"/><circle cx="27" cy="70" r="4" fill="var(--accent)" stroke="none"/><rect x="56" y="20" width="14" height="26" rx="7"/><path d="M63,46 L63,58 Q63,66 70,68"/><circle cx="73" cy="70" r="4" fill="var(--accent)" stroke="none"/></svg>',
+  speaker: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="25" y="18" width="50" height="64" rx="10"/><circle cx="50" cy="40" r="9"/><circle cx="50" cy="65" r="13"/><circle cx="50" cy="65" r="5" fill="var(--accent)" stroke="none"/></svg>',
+  smartwatch: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="34" y="30" width="32" height="40" rx="8"/><rect x="42" y="16" width="16" height="16" rx="3"/><rect x="42" y="68" width="16" height="16" rx="3"/><circle cx="50" cy="50" r="3" fill="var(--accent)" stroke="none"/></svg>',
+  powerbank: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="30" y="18" width="40" height="64" rx="8"/><path d="M55,32 L44,50 L50,50 L46,66 L62,44 L54,44 Z" fill="var(--accent)" stroke="none"/></svg>',
+  phonecase: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="28" y="10" width="44" height="80" rx="13"/><circle cx="63" cy="24" r="4"/><rect x="34" y="16" width="24" height="48" rx="4" fill="#F3E9DC" stroke="none" opacity="0.18"/></svg>',
+  screenguard: '<svg viewBox="0 0 100 100" fill="none" stroke="#F3E9DC" stroke-width="2.4"><rect x="30" y="12" width="40" height="76" rx="10"/><rect x="36" y="18" width="28" height="60" rx="3" fill="#F3E9DC" stroke="none" opacity="0.14"/><line x1="40" y1="30" x2="60" y2="30" stroke="var(--accent)" stroke-width="2" opacity="0.7"/></svg>'
 };
 
 var CATEGORY_LABELS = { phones: 'Mobile Phones', power: 'Apple Chargers', audio: 'Audio', wearables: 'Wearables', accessories: 'Accessories' };
@@ -69,8 +69,8 @@ function formatPrice(p){ return (p === null || p === undefined) ? 'TBA' : ('\u09
   if(!overlay) return;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if(sessionStorage.getItem('gadget_empire_transitioning') === '1'){
-    sessionStorage.removeItem('gadget_empire_transitioning');
+  if(sessionStorage.getItem('nexa_transitioning') === '1'){
+    sessionStorage.removeItem('nexa_transitioning');
     overlay.classList.add('cover');
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){ overlay.classList.add('reveal'); overlay.classList.remove('cover'); });
@@ -85,18 +85,19 @@ function formatPrice(p){ return (p === null || p === undefined) ? 'TBA' : ('\u09
     if(href.indexOf('.html') === -1) return;
     e.preventDefault();
     if(reduceMotion){ window.location.href = href; return; }
+    if(window.SFX) SFX.swoosh();
     overlay.classList.remove('reveal');
     overlay.classList.add('cover');
-    sessionStorage.setItem('gadget_empire_transitioning', '1');
+    sessionStorage.setItem('nexa_transitioning', '1');
     setTimeout(function(){ window.location.href = href; }, 480);
   });
 })();
 
 /* ================= cart ================= */
 var cart = [];
-try{ cart = JSON.parse(localStorage.getItem('gadget_empire_cart') || '[]'); }catch(e){ cart = []; }
+try{ cart = JSON.parse(localStorage.getItem('nexa_cart') || '[]'); }catch(e){ cart = []; }
 
-function saveCart(){ try{ localStorage.setItem('gadget_empire_cart', JSON.stringify(cart)); }catch(e){} }
+function saveCart(){ try{ localStorage.setItem('nexa_cart', JSON.stringify(cart)); }catch(e){} }
 
 function addToCart(productId, name, variantLabel, price){
   var existing = cart.find(function(i){ return i.productId === productId && i.variantLabel === variantLabel; });
@@ -185,13 +186,17 @@ function wireCartDrawer(){
     cartDrawer.classList.remove('open'); cartOverlay.classList.remove('open');
     cartDrawer.setAttribute('aria-hidden', 'true'); cartToggle.setAttribute('aria-expanded', 'false');
   }
-  cartToggle.addEventListener('click', openCart);
+  cartToggle.addEventListener('click', function(){ if(window.SFX) SFX.tick(); openCart(); });
   cartClose.addEventListener('click', closeCart);
   cartOverlay.addEventListener('click', closeCart);
+
+  var waBtn = document.getElementById('checkoutWhatsapp');
+  if(waBtn){ waBtn.addEventListener('click', function(){ if(window.SFX) SFX.swoosh(); }); }
 
   var fbBtn = document.getElementById('checkoutFacebook');
   if(fbBtn){
     fbBtn.addEventListener('click', function(){
+      if(window.SFX) SFX.tick();
       var msg = window.__nexaCartMessage || '';
       if(navigator.clipboard && navigator.clipboard.writeText){
         navigator.clipboard.writeText(msg).then(function(){ showToast('Order copied — paste it into Facebook chat'); })
@@ -265,6 +270,7 @@ function buildProductCard(p, opts){
     e.stopPropagation();
     var v = p.variants[currentVariantIndex()];
     if(v.price === null){ window.open(askLink.href, '_blank', 'noopener'); return; }
+    if(window.SFX) SFX.tick();
     addToCart(p.id, p.name, v.label, v.price);
     showToast('Added ' + p.name + ' (' + v.label + ') to cart');
   });
@@ -278,6 +284,7 @@ function buildProductCard(p, opts){
 function navigateTo(href){
   var overlay = document.getElementById('pageTransition');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(window.SFX) SFX.swoosh();
   if(!overlay || reduceMotion){ window.location.href = href; return; }
   overlay.classList.remove('reveal');
   overlay.classList.add('cover');
@@ -285,7 +292,126 @@ function navigateTo(href){
   setTimeout(function(){ window.location.href = href; }, 480);
 }
 
-/* ================= motion: cursor glow, magnetic, tilt, reveal, counters ================= */
+/* ================= wind / leaf particles ================= */
+var windX = 0; // -1..1, biased by cursor horizontal position
+function setupWind(){
+  if(reduceMotion) return;
+  var layer = document.getElementById('windLayer');
+  if(!layer) return;
+
+  window.addEventListener('mousemove', function(e){
+    windX = (e.clientX / window.innerWidth - 0.5) * 2;
+  }, { passive:true });
+
+  var MAX_LEAVES = 16;
+  function spawnLeaf(){
+    if(layer.childElementCount >= MAX_LEAVES) return;
+    var leaf = document.createElement('div');
+    var gold = Math.random() > 0.55;
+    leaf.className = 'leaf' + (gold ? ' gold' : '');
+    var startX = Math.random() * 100; // vw
+    var driftX = (40 + Math.random() * 90) * (windX >= 0 ? 1 : -1) + (Math.random()*40-20);
+    var duration = 7 + Math.random() * 6;
+    var spin = (Math.random() > 0.5 ? 1 : -1) * (280 + Math.random()*360);
+    var size = 8 + Math.random() * 10;
+    leaf.style.setProperty('--startX', startX + 'vw');
+    leaf.style.setProperty('--driftX', driftX + 'px');
+    leaf.style.setProperty('--spin', spin + 'deg');
+    leaf.style.width = size + 'px';
+    leaf.style.height = size + 'px';
+    leaf.style.animationDuration = duration + 's';
+    leaf.addEventListener('animationend', function(){ leaf.remove(); });
+    layer.appendChild(leaf);
+  }
+
+  for(var i=0;i<6;i++){ setTimeout(spawnLeaf, i * 400); }
+  setInterval(spawnLeaf, 850);
+}
+
+/* ================= synthesized sound effects (no external audio files) ================= */
+var SFX = (function(){
+  var ctx = null;
+  var enabled = false;
+  try{ enabled = localStorage.getItem('nexa_sound') === '1'; }catch(e){}
+
+  function getCtx(){
+    if(!ctx){
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(AC) ctx = new AC();
+    }
+    if(ctx && ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+
+  function swoosh(){
+    if(!enabled) return;
+    var c = getCtx();
+    if(!c) return;
+    var now = c.currentTime;
+    var osc = c.createOscillator();
+    var gain = c.createGain();
+    var filter = c.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(1800, now);
+    filter.frequency.exponentialRampToValueAtTime(220, now + 0.32);
+    filter.Q.value = 0.8;
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(700, now);
+    osc.frequency.exponentialRampToValueAtTime(90, now + 0.32);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.18, now + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.34);
+    osc.connect(filter); filter.connect(gain); gain.connect(c.destination);
+    osc.start(now); osc.stop(now + 0.36);
+  }
+
+  function tick(){
+    if(!enabled) return;
+    var c = getCtx();
+    if(!c) return;
+    var now = c.currentTime;
+    var osc = c.createOscillator();
+    var gain = c.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(1200, now);
+    osc.frequency.exponentialRampToValueAtTime(600, now + 0.05);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.09, now + 0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
+    osc.connect(gain); gain.connect(c.destination);
+    osc.start(now); osc.stop(now + 0.08);
+  }
+
+  function setEnabled(v){
+    enabled = v;
+    try{ localStorage.setItem('nexa_sound', v ? '1' : '0'); }catch(e){}
+    if(v) getCtx();
+    updateToggleUI();
+  }
+  function isEnabled(){ return enabled; }
+
+  function updateToggleUI(){
+    var btn = document.getElementById('soundToggle');
+    if(!btn) return;
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    var on = btn.querySelector('.snd-on');
+    var off = btn.querySelector('.snd-off');
+    if(on) on.style.display = enabled ? '' : 'none';
+    if(off) off.style.display = enabled ? 'none' : '';
+  }
+
+  return { swoosh: swoosh, tick: tick, setEnabled: setEnabled, isEnabled: isEnabled, updateToggleUI: updateToggleUI };
+})();
+
+function setupSoundToggle(){
+  var btn = document.getElementById('soundToggle');
+  if(!btn) return;
+  SFX.updateToggleUI();
+  btn.addEventListener('click', function(){
+    SFX.setEnabled(!SFX.isEnabled());
+    if(SFX.isEnabled()) SFX.tick();
+  });
+}
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
@@ -393,6 +519,8 @@ document.addEventListener('DOMContentLoaded', function(){
   setupCursorGlow();
   setupMagnetic();
   setupCounters();
+  setupWind();
+  setupSoundToggle();
   attachRevealObserver();
   if(typeof pageInit === 'function') pageInit();
   attachCardInteractions();
