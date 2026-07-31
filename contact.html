@@ -23,7 +23,16 @@
 </head>
 <body>
 
-<div id="pageTransition"><div class="pt-brand"><span class="pt-dot"></span>Gadget's Empire</div></div>
+<div id="promoBanner" class="promo-banner">
+  <div class="promo-banner-inner">
+    <span class="promo-tag">10% OFF</span>
+    <span class="promo-text">Everything — mention this code when you order:</span>
+    <button id="promoCopyBtn" class="promo-code" title="Click to copy">&ldquo;Feed me discount I beg of you please&rdquo;</button>
+    <button id="promoClose" class="promo-close" aria-label="Dismiss offer">&times;</button>
+  </div>
+</div>
+
+<div id="pageTransition"><div class="pt-brand"><span class="pt-dot"></span>Gadget's Empire</div><div class="pt-sub">Verified Used iPhones &middot; Genuine Apple Gear</div></div>
 <div id="cursor-glow"></div>
 <div id="windLayer" aria-hidden="true"></div>
 <canvas id="cursorTrail"></canvas>
@@ -116,6 +125,11 @@
   <div class="cart-drawer-head"><h3>Your Cart</h3><button id="cartClose" class="cart-close" aria-label="Close cart">&times;</button></div>
   <div id="cartItems" class="cart-items"><p class="cart-empty">Your cart is empty. Add something from the shelf.</p></div>
   <div class="cart-footer">
+    <div class="discount-row">
+      <input id="discountInput" type="text" class="discount-input mono" placeholder="Discount code">
+      <button id="discountApplyBtn" class="btn btn-outline" style="padding:9px 16px; font-size:12px;">Apply</button>
+    </div>
+    <div id="discountStatus" class="discount-status"></div>
     <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal" class="mono">৳0</span></div>
     <a id="checkoutWhatsapp" class="btn btn-solid magnetic" style="width:100%; margin-bottom:10px;" target="_blank" rel="noopener">Checkout via WhatsApp</a>
     <button id="checkoutFacebook" class="btn btn-outline" style="width:100%;">Copy Order for Facebook</button>

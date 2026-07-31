@@ -35,24 +35,55 @@ button{ font-family:inherit; cursor:pointer; }
 }
 :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
-/* ---------- page transition overlay (game-style wipe) ---------- */
+/* ---------- promo banner ---------- */
+.promo-banner{
+  background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 100%);
+  color:#F3EEE6; text-align:center; padding:10px 40px; font-size:12.5px;
+  position:relative; z-index:60;
+}
+.promo-banner-inner{ max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+.promo-tag{
+  font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:0.3px;
+  background:rgba(255,255,255,0.22); padding:2px 10px; border-radius:3px; white-space:nowrap;
+}
+.promo-code{
+  font-family:'JetBrains Mono',monospace; font-size:11.5px;
+  background:rgba(255,255,255,0.16); border:1px dashed rgba(255,255,255,0.55);
+  padding:5px 10px; border-radius:3px; color:#F3EEE6; cursor:pointer;
+}
+.promo-code:hover{ background:rgba(255,255,255,0.28); }
+.promo-close{
+  position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  background:none; border:none; color:#F3EEE6; font-size:18px; opacity:0.8; cursor:pointer; padding:4px 8px;
+}
+.promo-close:hover{ opacity:1; }
+.promo-banner.hidden{ display:none; }
+@media (max-width:600px){ .promo-banner{ padding:10px 34px; } .promo-text{ display:none; } }
+
+
 #pageTransition{
   position:fixed; inset:0; z-index:300;
-  background:var(--accent);
+  background:linear-gradient(135deg, var(--gold) 0%, var(--accent) 65%, var(--accent-dim) 100%);
   transform:scaleY(0); transform-origin:bottom;
   transition:transform .5s cubic-bezier(.76,0,.24,1);
-  display:flex; align-items:center; justify-content:center;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
   pointer-events:none;
 }
 #pageTransition.cover{ transform:scaleY(1); transform-origin:bottom; pointer-events:auto; }
 #pageTransition.reveal{ transform:scaleY(0); transform-origin:top; transition:transform .55s cubic-bezier(.76,0,.24,1) .05s; }
 #pageTransition .pt-brand{
-  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; color:#F3E9DC;
+  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; color:#F3EEE6;
   letter-spacing:-0.02em; display:flex; align-items:center; gap:10px;
   opacity:0; transform:translateY(10px); transition:opacity .3s ease .15s, transform .3s ease .15s;
 }
 #pageTransition.cover .pt-brand{ opacity:1; transform:translateY(0); }
-#pageTransition .pt-dot{ width:8px; height:8px; border-radius:50%; background:#120D0C; }
+#pageTransition .pt-dot{ width:8px; height:8px; border-radius:50%; background:#201812; }
+#pageTransition .pt-sub{
+  font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:2px; text-transform:uppercase;
+  color:rgba(243,238,230,0.85); margin-top:10px; opacity:0; transform:translateY(8px);
+  transition:opacity .3s ease .1s, transform .3s ease .1s;
+}
+#pageTransition.welcome.cover .pt-sub{ opacity:1; transform:translateY(0); transition-delay:.5s; }
 
 /* ---------- custom cursor glow ---------- */
 #cursor-glow{
@@ -390,6 +421,11 @@ footer ul a:hover{ color:var(--accent); }
 .cart-footer{ padding:18px 22px 24px; border-top:1px solid var(--line); }
 .cart-subtotal{ display:flex; justify-content:space-between; font-size:15px; margin-bottom:16px; }
 .cart-subtotal span:last-child{ color:var(--accent); font-size:17px; font-weight:600; }
+.cart-subtotal .original{ text-decoration:line-through; color:var(--text-dim); font-size:13px; margin-right:8px; font-weight:400; }
+.discount-row{ display:flex; gap:8px; margin-bottom:8px; }
+.discount-input{ flex:1; min-width:0; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:9px 10px; font-size:12px; color:var(--text); }
+.discount-status{ font-size:12px; margin-bottom:10px; min-height:14px; color:var(--text-dim); }
+.discount-status.applied{ color:var(--accent-dim); font-weight:600; }
 .cart-note{ font-size:11.5px; color:var(--text-dim); margin-top:10px; text-align:center; line-height:1.5; }
 
 /* toast */

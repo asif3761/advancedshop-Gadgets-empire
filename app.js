@@ -69,12 +69,23 @@ function formatPrice(p){ return (p === null || p === undefined) ? 'TBA' : ('\u09
   if(!overlay) return;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if(sessionStorage.getItem('nexa_transitioning') === '1'){
+  var cameFromNav = sessionStorage.getItem('nexa_transitioning') === '1';
+
+  if(cameFromNav){
     sessionStorage.removeItem('nexa_transitioning');
     overlay.classList.add('cover');
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){ overlay.classList.add('reveal'); overlay.classList.remove('cover'); });
     });
+  } else if(!sessionStorage.getItem('nexa_visited') && !reduceMotion){
+    sessionStorage.setItem('nexa_visited', '1');
+    overlay.classList.add('cover', 'welcome');
+    setTimeout(function(){
+      overlay.classList.add('reveal');
+      overlay.classList.remove('cover');
+    }, 950);
+  } else {
+    sessionStorage.setItem('nexa_visited', '1');
   }
 
   document.addEventListener('click', function(e){
@@ -117,7 +128,11 @@ function removeItem(index){
   saveCart();
   renderCart();
 }
-function cartTotal(){ return cart.reduce(function(sum, i){ return sum + i.price * i.qty; }, 0); }
+var discountApplied = false;
+try{ discountApplied = localStorage.getItem('nexa_discount') === '1'; }catch(e){}
+
+function cartSubtotalRaw(){ return cart.reduce(function(sum, i){ return sum + i.price * i.qty; }, 0); }
+function cartTotal(){ var raw = cartSubtotalRaw(); return discountApplied ? Math.round(raw * 0.9) : raw; }
 
 function renderCart(){
   var cartItemsEl = document.getElementById('cartItems');
@@ -150,12 +165,18 @@ function renderCart(){
     }).join('');
   }
 
+  var raw = cartSubtotalRaw();
   var total = cartTotal();
-  cartSubtotalEl.textContent = '\u09F3' + total.toLocaleString('en-US');
+  if(discountApplied && cart.length){
+    cartSubtotalEl.innerHTML = '<span class="original">\u09F3' + raw.toLocaleString('en-US') + '</span>\u09F3' + total.toLocaleString('en-US');
+  } else {
+    cartSubtotalEl.textContent = '\u09F3' + total.toLocaleString('en-US');
+  }
 
   var lines = cart.map(function(i){ return '- ' + i.name + ' (' + i.variantLabel + ') x' + i.qty + ' \u2014 \u09F3' + (i.price*i.qty).toLocaleString('en-US'); }).join('\n');
+  var discountLine = (discountApplied && cart.length) ? ('\n\nDiscount code applied: 10% off (Subtotal \u09F3' + raw.toLocaleString('en-US') + ' \u2192 Total \u09F3' + total.toLocaleString('en-US') + ')') : '';
   var message = cart.length
-    ? ('Hi! I\'d like to order:\n' + lines + '\n\nTotal: \u09F3' + total.toLocaleString('en-US') + '\n\nPlease confirm availability, delivery time, and bKash number.')
+    ? ('Hi! I\'d like to order:\n' + lines + discountLine + '\n\nTotal: \u09F3' + total.toLocaleString('en-US') + '\n\nPlease confirm availability, delivery time, and bKash number.')
     : 'Hi! I\'d like to place an order.';
   checkoutWhatsappEl.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
   window.__nexaCartMessage = message;
@@ -172,6 +193,31 @@ function wireCartDrawer(){
     else if(btn.dataset.action === 'dec') changeQty(idx, -1);
     else if(btn.dataset.action === 'remove') removeItem(idx);
   });
+
+  var discountInput = document.getElementById('discountInput');
+  var discountApplyBtn = document.getElementById('discountApplyBtn');
+  var discountStatus = document.getElementById('discountStatus');
+  function updateDiscountStatus(){
+    if(!discountStatus) return;
+    discountStatus.textContent = discountApplied ? '10% discount applied ✓' : '';
+    discountStatus.classList.toggle('applied', discountApplied);
+  }
+  updateDiscountStatus();
+  if(discountApplyBtn){
+    discountApplyBtn.addEventListener('click', function(){
+      var val = (discountInput.value || '').trim().toLowerCase().replace(/["“”]/g, '');
+      if(val === DISCOUNT_CODE){
+        discountApplied = true;
+        try{ localStorage.setItem('nexa_discount', '1'); }catch(e){}
+        updateDiscountStatus();
+        renderCart();
+        showToast('10% discount applied!');
+        if(window.SFX) SFX.tick();
+      } else {
+        showToast('Invalid code — check and try again');
+      }
+    });
+  }
 
   var cartDrawer = document.getElementById('cartDrawer');
   var cartOverlay = document.getElementById('cartOverlay');
@@ -202,6 +248,38 @@ function wireCartDrawer(){
         navigator.clipboard.writeText(msg).then(function(){ showToast('Order copied — paste it into Facebook chat'); })
           .catch(function(){ showToast('Could not copy — try WhatsApp checkout instead'); });
       } else { showToast('Could not copy — try WhatsApp checkout instead'); }
+    });
+  }
+}
+
+/* ================= promo banner ================= */
+var DISCOUNT_CODE = 'feed me discount i beg of you please';
+
+function setupPromoBanner(){
+  var banner = document.getElementById('promoBanner');
+  if(!banner) return;
+  var dismissed = false;
+  try{ dismissed = localStorage.getItem('nexa_promo_dismissed') === '1'; }catch(e){}
+  if(dismissed){ banner.classList.add('hidden'); return; }
+
+  var closeBtn = document.getElementById('promoClose');
+  if(closeBtn){
+    closeBtn.addEventListener('click', function(){
+      banner.classList.add('hidden');
+      try{ localStorage.setItem('nexa_promo_dismissed', '1'); }catch(e){}
+    });
+  }
+
+  var copyBtn = document.getElementById('promoCopyBtn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText('Feed me discount I beg of you please').then(function(){
+          showToast('Code copied — paste it in the cart to apply');
+        }).catch(function(){ showToast('Code: “Feed me discount I beg of you please”'); });
+      } else {
+        showToast('Code: “Feed me discount I beg of you please”');
+      }
     });
   }
 }
@@ -331,8 +409,8 @@ function setupWind(){
 /* ================= synthesized sound effects (no external audio files) ================= */
 var SFX = (function(){
   var ctx = null;
-  var enabled = false;
-  try{ enabled = localStorage.getItem('nexa_sound') === '1'; }catch(e){}
+  var enabled = true;
+  try{ var stored = localStorage.getItem('nexa_sound'); if(stored !== null) enabled = stored === '1'; }catch(e){}
 
   function getCtx(){
     if(!ctx){
@@ -604,6 +682,7 @@ document.addEventListener('DOMContentLoaded', function(){
   setupCursorTrail();
   setupHeroTilt();
   setupClickSlash();
+  setupPromoBanner();
   attachRevealObserver();
   if(typeof pageInit === 'function') pageInit();
   attachCardInteractions();
