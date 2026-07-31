@@ -41,6 +41,7 @@
 <div id="pageTransition"><div class="pt-brand"><span class="pt-dot"></span>Gadget's Empire</div></div>
 <div id="cursor-glow"></div>
 <div id="windLayer" aria-hidden="true"></div>
+<canvas id="cursorTrail"></canvas>
 
 <header>
   <div class="nav">
@@ -77,10 +78,12 @@
         <a href="contact.html" class="btn btn-outline magnetic">Get in Touch</a>
       </div>
     </div>
-    <div class="hero-3d reveal" aria-hidden="true">
-      <div class="hero-3d-inner">
-        <div class="hero-3d-face front"><div class="screen"></div></div>
-        <div class="hero-3d-face back"><div class="screen"></div></div>
+    <div class="hero-3d reveal" id="hero3d" aria-hidden="true">
+      <div class="hero-3d-tilt" id="hero3dTilt">
+        <div class="hero-3d-inner">
+          <div class="hero-3d-face front"><div class="screen"></div></div>
+          <div class="hero-3d-face back"><div class="screen"></div></div>
+        </div>
       </div>
     </div>
   </div>

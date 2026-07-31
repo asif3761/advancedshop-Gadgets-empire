@@ -415,6 +415,86 @@ function setupSoundToggle(){
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
+/* ================= real-time cursor trail (canvas) ================= */
+function setupCursorTrail(){
+  if(reduceMotion || isTouch) return;
+  var canvas = document.getElementById('cursorTrail');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var points = [];
+  window.addEventListener('mousemove', function(e){
+    points.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+    if(points.length > 26) points.shift();
+  }, { passive:true });
+
+  function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var now = performance.now();
+    points = points.filter(function(p){ return now - p.t < 420; });
+    for(var i=1; i<points.length; i++){
+      var p0 = points[i-1], p1 = points[i];
+      var age = (now - p1.t) / 420;
+      var alpha = Math.max(0, 1 - age) * 0.5;
+      if(alpha <= 0) continue;
+      var progress = i / points.length;
+      ctx.strokeStyle = progress > 0.5 ? 'rgba(194,59,46,' + alpha + ')' : 'rgba(184,134,46,' + alpha + ')';
+      ctx.lineWidth = 2.5 * (1 - age);
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+
+/* ================= hero 3D mockup: real-time mouse-follow tilt ================= */
+function setupHeroTilt(){
+  if(reduceMotion || isTouch) return;
+  var wrap = document.getElementById('hero3d');
+  var tilt = document.getElementById('hero3dTilt');
+  if(!wrap || !tilt) return;
+
+  var targetX = 0, targetY = 0, curX = 0, curY = 0;
+  window.addEventListener('mousemove', function(e){
+    var dx = (e.clientX - window.innerWidth/2) / (window.innerWidth/2);
+    var dy = (e.clientY - window.innerHeight/2) / (window.innerHeight/2);
+    targetX = Math.max(-1, Math.min(1, dx));
+    targetY = Math.max(-1, Math.min(1, dy));
+  }, { passive:true });
+
+  function loop(){
+    curX += (targetX - curX) * 0.07;
+    curY += (targetY - curY) * 0.07;
+    tilt.style.transform = 'rotateY(' + (curX*20) + 'deg) rotateX(' + (-curY*14) + 'deg)';
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+/* ================= click slash burst (game-style hit feedback) ================= */
+function setupClickSlash(){
+  if(reduceMotion) return;
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.btn, .cart-toggle, .chip');
+    if(!btn) return;
+    var slash = document.createElement('div');
+    slash.className = 'slash-burst';
+    var angle = (Math.random()*50 - 25);
+    slash.style.left = e.clientX + 'px';
+    slash.style.top = e.clientY + 'px';
+    slash.style.setProperty('--angle', angle + 'deg');
+    document.body.appendChild(slash);
+    slash.addEventListener('animationend', function(){ slash.remove(); });
+  });
+}
+
 function setupCursorGlow(){
   if(reduceMotion || isTouch) return;
   var cGlow = document.getElementById('cursor-glow');
@@ -521,6 +601,9 @@ document.addEventListener('DOMContentLoaded', function(){
   setupCounters();
   setupWind();
   setupSoundToggle();
+  setupCursorTrail();
+  setupHeroTilt();
+  setupClickSlash();
   attachRevealObserver();
   if(typeof pageInit === 'function') pageInit();
   attachCardInteractions();
