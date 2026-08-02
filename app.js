@@ -18,26 +18,101 @@ var ART = {
 var CATEGORY_LABELS = { phones: 'Mobile Phones', power: 'Apple Chargers', audio: 'Audio', wearables: 'Wearables', accessories: 'Accessories' };
 
 var CATEGORY_DESCRIPTIONS = {
-  phones: 'Used iPhones, individually checked before listing. Battery health and cosmetic condition confirmed over chat before you pay.',
+  phones: 'iPhones across multiple storage sizes and import regions. Pick your storage and region variant — pricing updates automatically.',
   power: 'Genuine Apple charging gear — the exact adapter, MagSafe puck, or cable your iPhone shipped with.',
   audio: 'Everyday audio gear to pair with your phone — earbuds and speakers for daily use.',
   wearables: 'Wrist-worn companions for your phone, with size variants where it matters.',
   accessories: 'The small stuff that protects and powers your phone day to day.'
 };
 
+/* Region variant pricing: base price is the USA-variant price; other regions add a fixed markup. */
+var REGIONS = [
+  { label:'USA', extra:0 },
+  { label:'Japan', extra:3000 },
+  { label:'Singapore', extra:3000 },
+  { label:'Australia', extra:3000 },
+  { label:'UK', extra:3000 },
+  { label:'Dubai', extra:3000 },
+  { label:'Hong Kong', extra:4500 },
+  { label:'China', extra:4500 }
+];
+
+function buildRegionVariants(storages){
+  var out = [];
+  storages.forEach(function(s){
+    REGIONS.forEach(function(r){
+      var price = (s.usaPrice === null || s.usaPrice === undefined) ? null : (s.usaPrice + r.extra);
+      out.push({ label: s.label + ' \u00b7 ' + r.label, price: price });
+    });
+  });
+  return out;
+}
+
 var PRODUCTS = [
-  { id:'iphone11', name:'iPhone 11 (Used)', category:'phones', badge:'Used', art:'phone',
-    variants:[ {label:'64GB', price:null}, {label:'128GB', price:27000}, {label:'256GB', price:null} ] },
-  { id:'iphone12', name:'iPhone 12 (Used)', category:'phones', badge:'Used', art:'phone',
-    variants:[ {label:'64GB', price:null}, {label:'128GB', price:32000}, {label:'256GB', price:null} ] },
-  { id:'iphone13', name:'iPhone 13 (Used)', category:'phones', badge:'Best seller', art:'phone',
-    variants:[ {label:'128GB', price:34900}, {label:'256GB', price:null} ] },
-  { id:'iphone13pro', name:'iPhone 13 Pro (Used)', category:'phones', badge:'Used', art:'phone',
-    variants:[ {label:'128GB', price:52500}, {label:'256GB', price:null} ] },
-  { id:'iphone14', name:'iPhone 14 (Used)', category:'phones', badge:'Used', art:'phone',
-    variants:[ {label:'128GB', price:44999}, {label:'256GB', price:null} ] },
-  { id:'iphone14pro-usa', name:'iPhone 14 Pro, USA Variant', category:'phones', badge:'USA', art:'phone',
-    variants:[ {label:'128GB', price:62999}, {label:'256GB', price:65999} ] },
+  { id:'iphone12', name:'iPhone 12', category:'phones', badge:'Value', art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:30999} ]),
+    features: ['A14 Bionic chip', '6.1" Super Retina XDR OLED display', 'Dual 12MP camera (Wide + Ultra Wide)', '5G \u00b7 Ceramic Shield \u00b7 MagSafe'] },
+
+  { id:'iphone13', name:'iPhone 13', category:'phones', badge:'Popular', art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:38999} ]),
+    features: ['A15 Bionic chip', '6.1" Super Retina XDR OLED display', 'Dual 12MP camera with Cinematic mode', '5G \u00b7 Improved battery life'] },
+
+  { id:'iphone14', name:'iPhone 14', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:44500} ]),
+    features: ['A15 Bionic chip (5-core GPU)', '6.1" Super Retina XDR OLED display', 'Dual 12MP camera, improved low-light', 'Crash Detection \u00b7 Satellite SOS'] },
+
+  { id:'iphone15', name:'iPhone 15', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:57499} ]),
+    features: ['A16 Bionic chip', '6.1" Super Retina XDR OLED display', '48MP main camera \u00b7 Dynamic Island', 'USB-C \u00b7 Crash Detection'] },
+
+  { id:'iphone11pro', name:'iPhone 11 Pro', category:'phones', badge:'Value', art:'phone',
+    variants: buildRegionVariants([ {label:'256GB', usaPrice:32999} ]),
+    features: ['A13 Bionic chip', '5.8" Super Retina XDR OLED display', 'Triple 12MP camera (Wide/Ultra Wide/Tele)', 'Face ID \u00b7 IP68 water resistant'] },
+
+  { id:'iphone12pro', name:'iPhone 12 Pro', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:39500}, {label:'256GB', usaPrice:40999} ]),
+    features: ['A14 Bionic chip', '6.1" Super Retina XDR OLED display', 'Triple 12MP camera + LiDAR Scanner', '5G \u00b7 MagSafe'] },
+
+  { id:'iphone12promax', name:'iPhone 12 Pro Max', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:48999}, {label:'256GB', usaPrice:50999} ]),
+    features: ['A14 Bionic chip', '6.7" Super Retina XDR OLED display', 'Triple 12MP camera + LiDAR, larger sensor', '5G \u00b7 MagSafe \u00b7 Longest 12-series battery'] },
+
+  { id:'iphone13pro', name:'iPhone 13 Pro', category:'phones', badge:'Popular', art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:52499}, {label:'256GB', usaPrice:55500} ]),
+    features: ['A15 Bionic chip', '6.1" ProMotion 120Hz OLED display', 'Triple 12MP camera + Macro + LiDAR', 'Cinematic & Photographic Styles'] },
+
+  { id:'iphone13promax', name:'iPhone 13 Pro Max', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:58999}, {label:'256GB', usaPrice:60999} ]),
+    features: ['A15 Bionic chip', '6.7" ProMotion 120Hz OLED display', 'Triple 12MP camera + Macro + LiDAR', 'Largest battery in the 13 lineup'] },
+
+  { id:'iphone14pro', name:'iPhone 14 Pro', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:62999}, {label:'256GB', usaPrice:65999} ]),
+    features: ['A16 Bionic chip', '6.1" ProMotion 120Hz OLED \u00b7 Dynamic Island', '48MP main + 12MP ultra-wide + 12MP tele', 'Always-On display'] },
+
+  { id:'iphone14promax', name:'iPhone 14 Pro Max', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:72999}, {label:'256GB', usaPrice:76999} ]),
+    features: ['A16 Bionic chip', '6.7" ProMotion 120Hz OLED \u00b7 Dynamic Island', '48MP main triple camera system', 'Always-On display \u00b7 Best 14-series battery'] },
+
+  { id:'iphone16', name:'iPhone 16', category:'phones', badge:'New', art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:70999} ]),
+    features: ['A18 chip', '6.1" Super Retina XDR OLED \u00b7 Dynamic Island', '48MP Fusion dual camera', 'Camera Control button \u00b7 USB-C'] },
+
+  { id:'iphone15promax', name:'iPhone 15 Pro Max', category:'phones', badge:null, art:'phone',
+    variants: buildRegionVariants([ {label:'256GB', usaPrice:91999} ]),
+    features: ['A17 Pro chip \u00b7 Titanium design', '6.7" ProMotion 120Hz OLED display', '48MP main + 5x Telephoto zoom', 'USB-C \u00b7 Action button'] },
+
+  { id:'iphone16pro', name:'iPhone 16 Pro', category:'phones', badge:'New', art:'phone',
+    variants: buildRegionVariants([ {label:'128GB', usaPrice:94999}, {label:'256GB', usaPrice:98999} ]),
+    features: ['A18 Pro chip \u00b7 Titanium design', '6.3" ProMotion 120Hz OLED display', 'Triple 48MP camera system + 5x zoom', 'Camera Control button'] },
+
+  { id:'iphone16promax', name:'iPhone 16 Pro Max', category:'phones', badge:'New', art:'phone',
+    variants: [ {label:'256GB', price:117999} ],
+    features: ['A18 Pro chip \u00b7 Titanium design', '6.9" ProMotion 120Hz OLED display', 'Triple 48MP camera + 5x Telephoto', 'Longest battery life in the 16 lineup'] },
+
+  { id:'iphone17promax', name:'iPhone 17 Pro Max', category:'phones', badge:'Latest', art:'phone',
+    variants: [ {label:'256GB', price:142999} ],
+    features: ['A19 Pro chip \u00b7 Aluminum unibody + Ceramic Shield 2', '6.9" ProMotion 120Hz OLED display', 'Triple 48MP Fusion camera system', 'Up to 39 hrs video playback \u00b7 Vapor chamber cooling'] },
+
   { id:'charger20w', name:'Apple 20W USB-C Power Adapter', category:'power', badge:'New', art:'adapter',
     variants:[ {label:'Standard', price:2800} ] },
   { id:'magsafe', name:'Apple MagSafe Charger', category:'power', badge:'New', art:'magsafe',
@@ -310,7 +385,7 @@ function buildProductCard(p, opts){
 
   card.innerHTML =
     '<div class="card-media">' +
-      '<span class="card-badge">' + p.badge + '</span>' +
+      (p.badge ? '<span class="card-badge">' + p.badge + '</span>' : '') +
       '<div class="shine"></div>' +
       ART[p.art] +
     '</div>' +
@@ -372,73 +447,18 @@ function navigateTo(href){
 
 /* ================= wind / leaf particles ================= */
 var windX = 0; // -1..1, biased by cursor horizontal position
-/* ================= hero transformation: warrior -> gentleman (anime-style 3-beat) ================= */
-function setupHeroTransform(){
-  var root = document.getElementById('heroTransform');
-  if(!root) return;
-  var aura = document.getElementById('htAura');
-  var flashEl = document.getElementById('htFlash');
-  var warrior = document.getElementById('htWarrior');
-  var gentleman = document.getElementById('htGentleman');
-  var replayBtn = document.getElementById('htReplay');
-  var localReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var playing = false;
 
-  function setState(el, shown){ el.classList.toggle('shown', shown); }
-
-  if(localReduceMotion){
-    // Skip the animated sequence; rest on the resolved "gentleman" state.
-    setState(gentleman, true);
-    aura.classList.add('gold');
-    if(replayBtn) replayBtn.style.display = 'none';
-    return;
-  }
-
-  function play(){
-    if(playing) return;
-    playing = true;
-    setState(warrior, true);
-    setState(gentleman, false);
-    aura.classList.remove('gold');
-    if(window.SFX) SFX.powerUp();
-
-    setTimeout(function(){
-      flashEl.classList.remove('active');
-      void flashEl.offsetWidth; // restart animation
-      flashEl.classList.add('active');
-      if(window.SFX) SFX.flash();
-    }, 900);
-
-    setTimeout(function(){
-      setState(warrior, false);
-      setState(gentleman, true);
-      aura.classList.add('gold');
-    }, 1075);
-
-    setTimeout(function(){
-      if(window.SFX) SFX.chime();
-      playing = false;
-    }, 1500);
-  }
-
-  if(replayBtn){ replayBtn.addEventListener('click', play); }
-
-  // Auto-play once, the first time it scrolls into view.
-  if('IntersectionObserver' in window){
-    var played = false;
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting && !played){
-          played = true;
-          setTimeout(play, 300);
-          io.unobserve(root);
-        }
-      });
-    }, { threshold: 0.4 });
-    io.observe(root);
-  } else {
-    setTimeout(play, 500);
-  }
+/* ================= hero 3D text: mouse-follow lighting ================= */
+function setupHeroText(){
+  var el = document.getElementById('ht3dTextEl');
+  if(!el || isTouch || reduceMotion) return;
+  window.addEventListener('mousemove', function(e){
+    var r = el.getBoundingClientRect();
+    var lx = ((e.clientX - r.left) / r.width) * 100;
+    var ly = ((e.clientY - r.top) / r.height) * 100;
+    el.style.setProperty('--lx', Math.max(-20, Math.min(120, lx)) + '%');
+    el.style.setProperty('--ly', Math.max(-20, Math.min(120, ly)) + '%');
+  }, { passive:true });
 }
 
 function setupWind(){
@@ -676,7 +696,7 @@ function setupCursorTrail(){
 /* ================= hero figure: real-time mouse-follow tilt ================= */
 function setupHeroTilt(){
   if(reduceMotion || isTouch) return;
-  var wrap = document.getElementById('heroTransform');
+  var wrap = document.getElementById('hero3dText');
   if(!wrap) return;
 
   var targetX = 0, targetY = 0, curX = 0, curY = 0;

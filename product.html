@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<div id="pageTransition"><div class="pt-brand"><span class="pt-dot"></span>Gadget's Empire</div><div class="pt-sub">Verified Used iPhones &middot; Genuine Apple Gear</div></div>
+<div id="pageTransition"><div class="pt-brand"><span class="pt-dot"></span>Gadget's Empire</div><div class="pt-sub">iPhones, Every Region &middot; Genuine Apple Gear</div></div>
 <div id="cursor-glow"></div>
 <div id="windLayer" aria-hidden="true"></div>
 <canvas id="cursorTrail"></canvas>
@@ -88,6 +88,10 @@
         <button id="pdAddCart" class="btn btn-solid magnetic"></button>
         <a id="pdAsk" class="btn btn-outline magnetic" target="_blank" rel="noopener">Ask on WhatsApp</a>
       </div>
+      <div class="pd-features" id="pdFeaturesWrap" style="display:none;">
+        <div class="pd-features-label mono">Key Features</div>
+        <ul id="pdFeaturesList" class="pd-features-list"></ul>
+      </div>
     </div>
   </div>
 
@@ -113,7 +117,7 @@
         <li><a href="contact.html">Facebook Page</a></li>
       </ul></div>
     </div>
-    <div class="foot-bottom"><span>© 2026 Gadget's Empire — Used iPhones &amp; Apple Chargers</span><span>Hosted on GitHub Pages</span></div>
+    <div class="foot-bottom"><span>© 2026 Gadget's Empire — iPhones & Apple Chargers</span><span>Hosted on GitHub Pages</span></div>
   </div>
 </footer>
 
@@ -152,11 +156,20 @@
     var ogDesc = document.getElementById('ogDesc');
     if(ogDesc) ogDesc.setAttribute('content', seoDesc);
     document.getElementById('breadcrumbName').textContent = p.name;
-    document.getElementById('pdBadge').textContent = p.badge;
+    var pdBadgeEl = document.getElementById('pdBadge');
+    pdBadgeEl.textContent = p.badge || '';
+    pdBadgeEl.style.display = p.badge ? '' : 'none';
     document.getElementById('pdArt').innerHTML = ART[p.art];
     document.getElementById('pdCat').textContent = CATEGORY_LABELS[p.category];
     document.getElementById('pdName').textContent = p.name;
     document.getElementById('pdDesc').textContent = CATEGORY_DESCRIPTIONS[p.category] || '';
+
+    if(p.features && p.features.length){
+      var featWrap = document.getElementById('pdFeaturesWrap');
+      var featList = document.getElementById('pdFeaturesList');
+      featList.innerHTML = p.features.map(function(f){ return '<li>' + f + '</li>'; }).join('');
+      featWrap.style.display = '';
+    }
 
     var multi = p.variants.length > 1;
     var variantWrap = document.getElementById('pdVariantWrap');
