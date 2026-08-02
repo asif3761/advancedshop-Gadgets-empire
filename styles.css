@@ -209,25 +209,46 @@ nav.links a.active::after{ content:''; position:absolute; left:0; right:0; botto
 .hero-copy p{ font-size:17px; color:var(--text-dim); line-height:1.65; max-width:500px; margin-bottom:30px; }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
-.hero-3d{ position:relative; width:230px; height:460px; margin:0 auto; perspective:1100px; z-index:2; }
-.hero-3d-tilt{ width:100%; height:100%; position:relative; transform-style:preserve-3d; will-change:transform; }
-.hero-3d-inner{ width:100%; height:100%; position:relative; transform-style:preserve-3d; animation:hero-spin 16s linear infinite; }
-@keyframes hero-spin{ from{ transform:rotateY(0deg) rotateX(8deg); } to{ transform:rotateY(360deg) rotateX(8deg); } }
-.hero-3d-face{
-  position:absolute; inset:0; border-radius:36px; border:2px solid rgba(243,233,220,0.22);
-  background:linear-gradient(160deg,#241A17,#120D0C);
-  backface-visibility:hidden; display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+.hero-transform{
+  position:relative; width:260px; height:300px; margin:0 auto; z-index:2;
+  display:flex; align-items:center; justify-content:center; will-change:transform;
 }
-.hero-3d-face.back{ transform:rotateY(180deg); }
-.hero-3d-face .screen{
-  width:80%; height:90%; border-radius:26px;
-  background:radial-gradient(120% 120% at 30% 18%, rgba(194,59,46,0.30), rgba(74,85,104,0.14) 55%, #120D0C 100%);
-  display:flex; align-items:center; justify-content:center;
+.ht-aura{
+  position:absolute; width:230px; height:230px; border-radius:50%;
+  background: radial-gradient(circle, rgba(32,24,18,0.55) 0%, rgba(194,59,46,0.28) 45%, transparent 72%);
+  filter:blur(18px); z-index:0;
+  animation: ht-pulse-dark 2.4s ease-in-out infinite;
+  transition: background 1s ease;
 }
-.hero-3d-face .screen svg{ width:44%; opacity:0.9; }
+.ht-aura.gold{
+  background: radial-gradient(circle, rgba(212,164,76,0.4) 0%, rgba(212,164,76,0.22) 45%, transparent 72%);
+  animation: ht-pulse-gold 3.2s ease-in-out infinite;
+}
+@keyframes ht-pulse-dark{ 0%,100%{ transform:scale(0.94); opacity:0.85; } 50%{ transform:scale(1.06); opacity:1; } }
+@keyframes ht-pulse-gold{ 0%,100%{ transform:scale(0.97); opacity:0.8; } 50%{ transform:scale(1.03); opacity:1; } }
+.ht-flash{
+  position:absolute; width:280px; height:280px; border-radius:50%;
+  background: radial-gradient(circle, #F3EEE6 0%, var(--gold) 45%, transparent 75%);
+  opacity:0; transform:scale(0.2); z-index:3; pointer-events:none;
+}
+.ht-flash.active{ animation: ht-flash-burst .5s cubic-bezier(.2,.8,.2,1); }
+@keyframes ht-flash-burst{ 0%{ opacity:0; transform:scale(0.2); } 35%{ opacity:1; transform:scale(1.15); } 100%{ opacity:0; transform:scale(1.5); } }
+.ht-figure{
+  position:absolute; width:220px; height:242px; z-index:1;
+  filter:drop-shadow(0 18px 26px rgba(0,0,0,0.35));
+  opacity:0; transform:scale(0.88) translateY(6px);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.ht-figure.shown{ opacity:1; transform:scale(1) translateY(0); }
+.ht-replay{
+  position:absolute; bottom:-6px; z-index:4;
+  background:rgba(32,24,18,0.06); border:1px solid var(--line); color:var(--text-dim);
+  font-size:11px; letter-spacing:1px; padding:6px 14px; border-radius:999px; cursor:pointer;
+  transition: all .2s ease;
+}
+.ht-replay:hover{ background:rgba(32,24,18,0.1); color:var(--text); border-color:var(--accent); }
 .hero-horizon{ position:absolute; left:0; right:0; bottom:0; width:100%; height:110px; z-index:1; pointer-events:none; }
-@media (prefers-reduced-motion: reduce){ .hero-3d-inner{ animation:none; transform:rotateY(-24deg) rotateX(8deg); } }
+@media (prefers-reduced-motion: reduce){ .ht-aura{ animation:none; } }
 
 /* marquee */
 .marquee{ margin-top:70px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:18px 0; overflow:hidden; position:relative; z-index:2; }

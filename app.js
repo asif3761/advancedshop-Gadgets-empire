@@ -372,6 +372,75 @@ function navigateTo(href){
 
 /* ================= wind / leaf particles ================= */
 var windX = 0; // -1..1, biased by cursor horizontal position
+/* ================= hero transformation: warrior -> gentleman (anime-style 3-beat) ================= */
+function setupHeroTransform(){
+  var root = document.getElementById('heroTransform');
+  if(!root) return;
+  var aura = document.getElementById('htAura');
+  var flashEl = document.getElementById('htFlash');
+  var warrior = document.getElementById('htWarrior');
+  var gentleman = document.getElementById('htGentleman');
+  var replayBtn = document.getElementById('htReplay');
+  var localReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var playing = false;
+
+  function setState(el, shown){ el.classList.toggle('shown', shown); }
+
+  if(localReduceMotion){
+    // Skip the animated sequence; rest on the resolved "gentleman" state.
+    setState(gentleman, true);
+    aura.classList.add('gold');
+    if(replayBtn) replayBtn.style.display = 'none';
+    return;
+  }
+
+  function play(){
+    if(playing) return;
+    playing = true;
+    setState(warrior, true);
+    setState(gentleman, false);
+    aura.classList.remove('gold');
+    if(window.SFX) SFX.powerUp();
+
+    setTimeout(function(){
+      flashEl.classList.remove('active');
+      void flashEl.offsetWidth; // restart animation
+      flashEl.classList.add('active');
+      if(window.SFX) SFX.flash();
+    }, 900);
+
+    setTimeout(function(){
+      setState(warrior, false);
+      setState(gentleman, true);
+      aura.classList.add('gold');
+    }, 1075);
+
+    setTimeout(function(){
+      if(window.SFX) SFX.chime();
+      playing = false;
+    }, 1500);
+  }
+
+  if(replayBtn){ replayBtn.addEventListener('click', play); }
+
+  // Auto-play once, the first time it scrolls into view.
+  if('IntersectionObserver' in window){
+    var played = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !played){
+          played = true;
+          setTimeout(play, 300);
+          io.unobserve(root);
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(root);
+  } else {
+    setTimeout(play, 500);
+  }
+}
+
 function setupWind(){
   if(reduceMotion) return;
   var layer = document.getElementById('windLayer');
@@ -460,6 +529,78 @@ var SFX = (function(){
     osc.start(now); osc.stop(now + 0.08);
   }
 
+  function powerUp(){
+    if(!enabled) return;
+    var c = getCtx();
+    if(!c) return;
+    var now = c.currentTime;
+    var osc = c.createOscillator();
+    var gain = c.createGain();
+    var filter = c.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(300, now);
+    filter.frequency.exponentialRampToValueAtTime(1400, now + 0.75);
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(70, now);
+    osc.frequency.exponentialRampToValueAtTime(180, now + 0.75);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.13, now + 0.5);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+    osc.connect(filter); filter.connect(gain); gain.connect(c.destination);
+    osc.start(now); osc.stop(now + 0.82);
+  }
+
+  function flash(){
+    if(!enabled) return;
+    var c = getCtx();
+    if(!c) return;
+    var now = c.currentTime;
+    var bufferSize = c.sampleRate * 0.25;
+    var buffer = c.createBuffer(1, bufferSize, c.sampleRate);
+    var data = buffer.getChannelData(0);
+    for(var i=0;i<bufferSize;i++){ data[i] = (Math.random()*2 - 1) * (1 - i/bufferSize); }
+    var noise = c.createBufferSource();
+    noise.buffer = buffer;
+    var noiseFilter = c.createBiquadFilter();
+    noiseFilter.type = 'highpass';
+    noiseFilter.frequency.value = 1500;
+    var noiseGain = c.createGain();
+    noiseGain.gain.setValueAtTime(0.22, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+    noise.connect(noiseFilter); noiseFilter.connect(noiseGain); noiseGain.connect(c.destination);
+    noise.start(now); noise.stop(now + 0.26);
+
+    var bell = c.createOscillator();
+    var bellGain = c.createGain();
+    bell.type = 'sine';
+    bell.frequency.setValueAtTime(1600, now);
+    bellGain.gain.setValueAtTime(0.0001, now);
+    bellGain.gain.exponentialRampToValueAtTime(0.15, now + 0.02);
+    bellGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
+    bell.connect(bellGain); bellGain.connect(c.destination);
+    bell.start(now); bell.stop(now + 0.42);
+  }
+
+  function chime(){
+    if(!enabled) return;
+    var c = getCtx();
+    if(!c) return;
+    var now = c.currentTime;
+    var notes = [523.25, 659.25, 783.99]; // C5, E5, G5 — bright major triad
+    notes.forEach(function(freq, i){
+      var start = now + i * 0.09;
+      var osc = c.createOscillator();
+      var gain = c.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, start);
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(0.12, start + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.6);
+      osc.connect(gain); gain.connect(c.destination);
+      osc.start(start); osc.stop(start + 0.62);
+    });
+  }
+
   function setEnabled(v){
     enabled = v;
     try{ localStorage.setItem('nexa_sound', v ? '1' : '0'); }catch(e){}
@@ -478,7 +619,7 @@ var SFX = (function(){
     if(off) off.style.display = enabled ? 'none' : '';
   }
 
-  return { swoosh: swoosh, tick: tick, setEnabled: setEnabled, isEnabled: isEnabled, updateToggleUI: updateToggleUI };
+  return { swoosh: swoosh, tick: tick, powerUp: powerUp, flash: flash, chime: chime, setEnabled: setEnabled, isEnabled: isEnabled, updateToggleUI: updateToggleUI };
 })();
 
 function setupSoundToggle(){
@@ -532,12 +673,11 @@ function setupCursorTrail(){
   requestAnimationFrame(draw);
 }
 
-/* ================= hero 3D mockup: real-time mouse-follow tilt ================= */
+/* ================= hero figure: real-time mouse-follow tilt ================= */
 function setupHeroTilt(){
   if(reduceMotion || isTouch) return;
-  var wrap = document.getElementById('hero3d');
-  var tilt = document.getElementById('hero3dTilt');
-  if(!wrap || !tilt) return;
+  var wrap = document.getElementById('heroTransform');
+  if(!wrap) return;
 
   var targetX = 0, targetY = 0, curX = 0, curY = 0;
   window.addEventListener('mousemove', function(e){
@@ -550,7 +690,7 @@ function setupHeroTilt(){
   function loop(){
     curX += (targetX - curX) * 0.07;
     curY += (targetY - curY) * 0.07;
-    tilt.style.transform = 'rotateY(' + (curX*20) + 'deg) rotateX(' + (-curY*14) + 'deg)';
+    wrap.style.transform = 'perspective(900px) rotateY(' + (curX*10) + 'deg) rotateX(' + (-curY*7) + 'deg)';
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
