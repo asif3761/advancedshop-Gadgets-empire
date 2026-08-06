@@ -455,77 +455,126 @@ footer ul a:hover{ color:var(--accent); }
   white-space:nowrap;
 }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
 /* =========================
    Payment Section
 ========================= */
 
 .payments{
-    padding:80px 20px;
-    text-align:center;
-}
-
-.payments h2{
-    font-size:40px;
-    margin-bottom:15px;
-}
-
-.payments p{
-    max-width:700px;
-    margin:auto;
-    line-height:1.6;
+    padding:90px 0;
 }
 
 
 .payment-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
+    gap:22px;
     margin-top:40px;
 }
 
 
 .payment-card{
+
     padding:30px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    transition:.3s ease;
+
+    background:linear-gradient(
+        160deg,
+        var(--surface),
+        var(--surface-2)
+    );
+
+    border:1px solid var(--line);
+
+    border-radius:var(--radius);
+
+    transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+
 }
 
 
 .payment-card:hover{
-    transform:translateY(-10px);
+
+    transform:translateY(-8px);
+
+    border-color:rgba(194,59,46,.35);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.18);
+
 }
 
 
 .payment-card h3{
-    font-size:22px;
-    margin-bottom:15px;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:20px;
+
+    margin-bottom:14px;
+
 }
 
 
 .payment-card h4{
-    font-size:26px;
+
+    font-family:'JetBrains Mono',monospace;
+
+    color:var(--accent);
+
+    font-size:24px;
+
     margin:15px 0;
+
 }
 
 
+.payment-card p{
+
+    color:var(--text-dim);
+
+    font-size:14px;
+
+}
+
+
+/* WhatsApp button inside payment card */
+
 .whatsapp-btn{
-    display:inline-block;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     margin-top:20px;
-    padding:14px 35px;
+
+    padding:13px 28px;
+
     background:#25D366;
+
     color:white;
-    text-decoration:none;
+
     border-radius:50px;
-    font-weight:bold;
+
+    font-weight:600;
+
+    transition:.3s ease;
+
 }
 
 
 .whatsapp-btn:hover{
-    opacity:.8;
+
+    transform:translateY(-3px);
+
+    opacity:.9;
+
 }
+
 
 
 /* Floating WhatsApp Button */
@@ -533,35 +582,43 @@ footer ul a:hover{ color:var(--accent); }
 .floating-whatsapp{
 
     position:fixed;
+
     right:25px;
+
     bottom:25px;
 
     width:65px;
+
     height:65px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     border-radius:50%;
 
     background:#25D366;
+
     color:white;
 
-    font-size:32px;
+    font-size:30px;
 
     text-decoration:none;
 
     z-index:9999;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
 
-    transition:.3s;
+    transition:.3s ease;
+
 }
 
 
 .floating-whatsapp:hover{
 
-    transform:scale(1.1);
+    transform:scale(1.12);
 
 }
