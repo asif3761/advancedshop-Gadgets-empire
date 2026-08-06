@@ -196,17 +196,29 @@
     </div>
   </div>
 </section>
+  
 <section id="payments" class="payments">
 
-<h2>Secure Payment Options</h2>
+<div class="wrap">
+
+<div class="section-head reveal">
+
+<div>
+<span class="eyebrow">Secure Checkout</span>
+<h2>Payment Options</h2>
+</div>
 
 <p>
-Choose your preferred payment method. After payment, send us the transaction screenshot on WhatsApp for quick confirmation.
+Choose your preferred payment method. After payment, send the transaction screenshot on WhatsApp for quick confirmation.
 </p>
+
+</div>
+
 
 <div class="payment-grid">
 
-<div class="payment-card">
+
+<div class="payment-card reveal">
 
 <h3>🏦 City Bank</h3>
 
@@ -218,7 +230,9 @@ Choose your preferred payment method. After payment, send us the transaction scr
 
 </div>
 
-<div class="payment-card">
+
+
+<div class="payment-card reveal">
 
 <h3>📱 bKash</h3>
 
@@ -226,22 +240,34 @@ Choose your preferred payment method. After payment, send us the transaction scr
 
 <h4>01951467502</h4>
 
+<p>Payment confirmation through WhatsApp</p>
+
 </div>
 
-<div class="payment-card">
+
+
+<div class="payment-card reveal">
 
 <h3>💬 WhatsApp Order</h3>
 
-<p>Order instantly through WhatsApp.</p>
+<p>
+Order directly with Gadget's Empire support.
+</p>
+
 
 <a
 href="https://wa.me/8801951467502"
 target="_blank"
+rel="noopener"
 class="whatsapp-btn">
 
-Chat Now
+Chat on WhatsApp
 
 </a>
+
+
+</div>
+
 
 </div>
 
@@ -294,14 +320,20 @@ Chat Now
     featured.forEach(function(id){ grid.appendChild(buildProductCard(getProduct(id))); });
   }
 </script>
+
+
   
-  <a href="https://wa.me/8801951467502"
+<a href="https://wa.me/8801951467502"
 
 class="floating-whatsapp"
 
-target="_blank">
+target="_blank"
 
-<img src="images/whatsapp.png" alt="WhatsApp">
+rel="noopener"
+
+aria-label="Chat on WhatsApp">
+
+💬
 
 </a>
   
